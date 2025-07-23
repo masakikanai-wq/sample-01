@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>モダンビジネスソリューション</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: #4F46E5;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4338CA;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4F46E5;
+            border: 2px solid #4F46E5;
+        }
+
+        .btn-secondary:hover {
+            background: #4F46E5;
+            color: white;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header.scrolled {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo h3 {
+            color: #4F46E5;
+            margin: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #4F46E5;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1f2937;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Styles */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f6f6f6;
+            position: relative;
+            padding: 120px 0 60px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .hero-text {
+            text-align: left;
+            color: #1f2937;
+            width: 100%;
+            margin: 0;
+        }
+
+        .hero-text h1 {
+            margin-bottom: 24px;
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #1f2937, #4F46E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .subtitle {
+            margin-bottom: 32px;
+            opacity: 0.8;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #6b7280;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            justify-content: flex-start;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4F46E5;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Company Section Styles */
+        .company {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .company-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .company-text {
+            text-align: left;
+        }
+
+        .company-tag {
+            color: #4F46E5;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .company-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #4F46E5;
+        }
+
+        .company-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1f2937;
+            line-height: 1.3;
+            margin-top: 24px;
+            margin-bottom: 40px;
+        }
+
+        .company-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 32px;
+        }
+
+        .company-button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .company-button-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .company-button-text:hover {
+            color: #4F46E5;
+            transform: translateX(2px);
+        }
+
+        .company-arrow-button {
+            width: 48px;
+            height: 48px;
+            background: #4F46E5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .company-arrow-button:hover {
+            background: #4338CA;
+            transform: translateX(2px);
+        }
+
+        .company-arrow-button::after {
+            content: '→';
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .company-visual {
+            position: relative;
+        }
+
+        .company-image-placeholder {
+            width: 100%;
+            height: 350px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: #e2e8f0;
+            border: 2px dashed #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-placeholder-content {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .company-placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .company-placeholder-content p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Service Section Styles */
+        .service {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .service-header {
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .service-tag {
+            color: #4F46E5;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #4F46E5;
+        }
+
+        .service-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1f2937;
+            line-height: 1.3;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        .service-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 200px;
+            background: #e2e8f0;
+            border: 2px solid #94a3b8;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-image-placeholder {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .service-image-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .service-image-placeholder p {
+            font-size: 14px;
+        }
+
+        .service-card-content {
+            padding: 32px 24px;
+        }
+
+        .service-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .service-card-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: #4F46E5;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .service-card-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6b7280;
+        }
+
+        .service-footer {
+            margin-top: 60px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .service-button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .service-button-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-button-text:hover {
+            color: #4F46E5;
+            transform: translateX(2px);
+        }
+
+        .service-arrow-button {
+            width: 48px;
+            height: 48px;
+            background: #4F46E5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-arrow-button:hover {
+            background: #4338CA;
+            transform: translateX(2px);
+        }
+
+        .service-arrow-button::after {
+            content: '→';
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Case Section Styles */
+        .case {
+            padding: 100px 0;
+            background: #f6f6f6;
+        }
+
+        .case-header {
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
+        .case-tag {
+            color: #4F46E5;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .case-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #4F46E5;
+        }
+
+        .case-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-top: 24px;
+        }
+
+        .case-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .case-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .case-card-image {
+            width: calc(100% - 48px);
+            height: 200px;
+            background: #e2e8f0;
+            border-radius: 16px;
+            margin: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .case-image-placeholder {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .case-image-placeholder p {
+            font-size: 14px;
+        }
+
+        .case-card-content {
+            padding: 24px;
+        }
+
+        .case-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .case-card-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            background: #4F46E5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .case-card-date {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .case-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        /* News Section Styles */
+        .news {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .news-content {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .news-header {
+            text-align: left;
+        }
+
+        .news-tag {
+            color: #4F46E5;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .news-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #4F46E5;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .news-item {
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .news-item-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .news-item-category {
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            background: #4F46E5;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .news-item-date {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .news-item-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-item-title:hover {
+            opacity: 0.7;
+        }
+
+        .news-footer {
+            margin-top: 60px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .news-button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .news-button-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .news-button-text:hover {
+            color: #4F46E5;
+            transform: translateX(2px);
+        }
+
+        .news-arrow-button {
+            width: 48px;
+            height: 48px;
+            background: #4F46E5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .news-arrow-button:hover {
+            background: #4338CA;
+            transform: translateX(2px);
+        }
+
+        .news-arrow-button::after {
+            content: '→';
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+            position: relative;
+            top: -1px;
+        }
+
+        /* Career Section Styles */
+        .career {
+            padding: 144px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop') center/cover;
+            color: white;
+        }
+
+        .career-header {
+            text-align: left;
+            max-width: 1200px;
+        }
+
+        .career-tag {
+            color: white;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .career-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: white;
+        }
+
+        .career-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .career-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: white;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .career-button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .career-button-text {
+            font-size: 16px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .career-button-text:hover {
+            opacity: 0.8;
+            transform: translateX(2px);
+        }
+
+        .career-arrow-button {
+            width: 48px;
+            height: 48px;
+            background: #4F46E5;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .career-arrow-button:hover {
+            background: #4338CA;
+            transform: translateX(2px);
+        }
+
+        .career-arrow-button::after {
+            content: '→';
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+            position: relative;
+            top: -1px;
+        }
+
+        /* Contact Section Styles */
+        .contact {
+            padding: 100px 0;
+            background: #4F46E5;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 200px;
+            background: white;
+            opacity: 0.3;
+        }
+
+        .contact-section {
+            text-align: left;
+        }
+
+        .contact-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .contact-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: white;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .contact-button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-button-text {
+            font-size: 16px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button-text:hover {
+            opacity: 0.8;
+            transform: translateX(2px);
+        }
+
+        .contact-arrow-button {
+            width: 48px;
+            height: 48px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-arrow-button:hover {
+            background: #f8f9fa;
+            transform: translateX(2px);
+        }
+
+        .contact-arrow-button::after {
+            content: '→';
+            color: #4F46E5;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+            position: relative;
+            top: -1px;
+        }
+
+        /* Hero Image Section */
+        .hero-image-section {
+            margin: 0;
+            padding: 40px 0;
+            position: relative;
+            background: #f6f6f6;
+        }
+
+        .hero-visual {
+            position: relative;
+            width: 90%;
+            margin: 0;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 400px;
+            border-radius: 0 96px 96px 0;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: #e2e8f0;
+            border: 2px dashed #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .placeholder-content {
+            text-align: center;
+            color: #64748b;
+        }
+
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .placeholder-content p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            border-radius: 50%;
+            opacity: 0.1;
+            top: -30px;
+            right: -30px;
+            z-index: 0;
+        }
+
+        /* Features Styles */
+        .features {
+            padding: 100px 0;
+            background: #f6f6f6;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            margin-bottom: 24px;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .section-a {
+            background: white;
+        }
+
+        .section-b {
+            background: #f8fafc;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text ul {
+            margin: 24px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .about-text li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .about-text li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4F46E5;
+            font-weight: bold;
+        }
+
+        .section-b .about-content {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Testimonials Styles */
+        .testimonials {
+            padding: 100px 0;
+            background: #1f2937;
+            color: white;
+        }
+
+        .testimonials .section-header h2,
+        .testimonials .section-header p {
+            color: white;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-text {
+            margin-bottom: 40px;
+        }
+
+        .testimonial-text p {
+            font-size: 20px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            margin: 0;
+            color: white;
+        }
+
+        .author-info p {
+            margin: 4px 0 0 0;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Pricing Styles */
+        .pricing {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.popular {
+            border-color: #4F46E5;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.07);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4F46E5;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-header h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .price {
+            margin-bottom: 30px;
+        }
+
+        .currency {
+            font-size: 24px;
+            vertical-align: top;
+        }
+
+        .amount {
+            font-size: 48px;
+            font-weight: 700;
+            color: #4F46E5;
+        }
+
+        .period {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .card-features ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .card-features li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+
+        /* FAQ Styles */
+        .faq {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .faq-content {
+            display: grid;
+            grid-template-columns: 30% 70%;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .faq-header {
+            text-align: left;
+        }
+
+        .faq-tag {
+            color: #4F46E5;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .faq-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background: #4F46E5;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            color: #4F46E5;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            border-top: 1px solid #e5e7eb;
+            padding: 0 24px;
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+        }
+
+        .faq-answer-content {
+            padding: 24px 0;
+        }
+
+        .faq-answer p {
+            color: #6b7280;
+            line-height: 1.6;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* CTA Banner Styles */
+        .cta-banner {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+        }
+
+        .cta-content {
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn-secondary {
+            background: transparent;
+            border-color: white;
+            color: white;
+        }
+
+        .cta-buttons .btn-secondary:hover {
+            background: white;
+            color: #4F46E5;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 90px 0 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-company-name {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-address {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #4F46E5;
+        }
+
+        .link-group h4 {
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .link-group ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-group li {
+            margin-bottom: 8px;
+        }
+
+        .link-group a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .link-group a:hover {
+            color: #4F46E5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 0 40px;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .hero-visual {
+                width: 95%;
+                margin: 0;
+            }
+
+            .hero-image {
+                height: 280px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                justify-content: center;
+            }
+
+            .hero::before {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-b .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-b .about-text {
+                order: -1;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .testimonial-author {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .hero-visual {
+                width: 98%;
+                margin: 0;
+            }
+
+            .hero-image {
+                height: 250px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: scale(1.02);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="logo">
+                        <h3>ModernBiz</h3>
+                    </div>
+                    <div class="nav-links">
+                        <a href="#features">機能</a>
+                        <a href="#about">会社概要</a>
+                        <a href="#pricing">料金プラン</a>
+                        <a href="#contact">お問い合わせ</a>
+                    </div>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                    <div class="hero-text fade-in">
+                        <h1>モダンソリューションでビジネスを変革</h1>
+                        <p class="subtitle">革新的なプラットフォームで業務を効率化し、生産性を向上させ、成長を加速させましょう。先進的な企業のためのソリューションです。</p>
+                        <div class="hero-buttons">
+                            <a href="#pricing" class="btn btn-primary">今すぐ始める</a>
+                            <a href="#features" class="btn btn-secondary">詳しく見る</a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10,000+</div>
+                                <div class="stat-label">導入企業</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">99.9%</div>
+                                <div class="stat-label">稼働率</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">サポート</div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- Hero Image Section -->
+        <section class="hero-image-section">
+            <div class="hero-visual fade-in">
+                <div class="hero-decoration"></div>
+                <div class="hero-image-placeholder">
+                    <div class="placeholder-content">
+                        <div class="placeholder-icon">📸</div>
+                        <p>ここに写真が入ります</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>私たちのプラットフォームを選ぶ理由</h2>
+                    <p>世界中の企業から選ばれる、優れた機能をご紹介します</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3>圧倒的な高速性</h3>
+                        <p>最適化されたインフラストラクチャと最先端技術により、驚くべき高速パフォーマンスを実現します。</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <circle cx="12" cy="16" r="1"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <h3>安全で信頼性の高い</h3>
+                        <p>エンタープライズグレードのセキュリティ対策と99.9%の稼働率保証で、お客様のデータを完全に保護します。</p>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>チーム連携</h3>
+                        <p>高度なコラボレーションツールとリアルタイム更新機能で、チーム全体がスムーズに連携できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Section -->
+        <section class="company">
+            <div class="container">
+                <div class="company-content">
+                    <div class="company-text fade-in">
+                        <div class="company-tag">COMPANY</div>
+                        <h2 class="company-title">すべてのクライアントに<br>課題解決策と成長を</h2>
+                        <p class="company-description">
+                            私たちは、ヒトとITのチカラで働く人たちを応援する企業です。働くすべての人を幸せにする支援を多角的に展開していきます。採用／人事制度／DX推進／システム導入／新規事業企画／業務改善などをご支援しています。
+                        </p>
+                        <div class="company-button-wrapper">
+                            <button class="company-arrow-button" aria-label="企業情報を見る"></button>
+                            <span class="company-button-text">企業情報をみる</span>
+                        </div>
+                    </div>
+                    <div class="company-visual fade-in">
+                        <div class="company-image-placeholder">
+                            <div class="company-placeholder-content">
+                                <div class="company-placeholder-icon">🏢</div>
+                                <p>ここに会社の写真が入ります</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section class="service">
+            <div class="container">
+                <div class="service-header fade-in">
+                    <div class="service-tag">SERVICE</div>
+                    <h2 class="service-title">あらゆる力を、進化のために。</h2>
+                    <p class="service-description">
+                        ModernBizが提供しているサービスはこちらからご覧ください。<br>
+                        多角的に対応しています。
+                    </p>
+                </div>
+                <div class="service-cards">
+                    <div class="service-card fade-in">
+                        <div class="service-card-image">
+                            <div class="service-image-placeholder">
+                                <p>サービス画像</p>
+                            </div>
+                        </div>
+                        <div class="service-card-content">
+                            <h3 class="service-card-title">組織・⼈事支援</h3>
+                            <p class="service-card-subtitle">HR SUPPORT</p>
+                            <p class="service-card-description">本質的な課題解決につながる組織・⼈事戦略の策定を支援</p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-card-image">
+                            <div class="service-image-placeholder">
+                                <p>サービス画像</p>
+                            </div>
+                        </div>
+                        <div class="service-card-content">
+                            <h3 class="service-card-title">組織・⼈事支援</h3>
+                            <p class="service-card-subtitle">HR SUPPORT</p>
+                            <p class="service-card-description">本質的な課題解決につながる組織・⼈事戦略の策定を支援</p>
+                        </div>
+                    </div>
+                    <div class="service-card fade-in">
+                        <div class="service-card-image">
+                            <div class="service-image-placeholder">
+                                <p>サービス画像</p>
+                            </div>
+                        </div>
+                        <div class="service-card-content">
+                            <h3 class="service-card-title">組織・⼈事支援</h3>
+                            <p class="service-card-subtitle">HR SUPPORT</p>
+                            <p class="service-card-description">本質的な課題解決につながる組織・⼈事戦略の策定を支援</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-footer">
+                    <div class="service-button-wrapper">
+                        <button class="service-arrow-button" aria-label="事業内容を見る"></button>
+                        <span class="service-button-text">事業内容をみる</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Section -->
+        <section class="case">
+            <div class="container">
+                <div class="case-header fade-in">
+                    <div class="case-tag">CASE</div>
+                    <p class="case-description">ModernBizの事例を紹介します。</p>
+                </div>
+                <div class="case-cards">
+                    <div class="case-card fade-in">
+                        <div class="case-card-image">
+                            <div class="case-image-placeholder">
+                                <p>事例画像</p>
+                            </div>
+                        </div>
+                        <div class="case-card-content">
+                            <div class="case-card-meta">
+                                <div class="case-card-category">新規事業支援</div>
+                                <div class="case-card-date">2025/07/23</div>
+                            </div>
+                            <h3 class="case-card-title">コンセプト・コミュニケーション設計から構築し、新規事業立ち上げを支援</h3>
+                        </div>
+                    </div>
+                    <div class="case-card fade-in">
+                        <div class="case-card-image">
+                            <div class="case-image-placeholder">
+                                <p>事例画像</p>
+                            </div>
+                        </div>
+                        <div class="case-card-content">
+                            <div class="case-card-meta">
+                                <div class="case-card-category">新規事業支援</div>
+                                <div class="case-card-date">2025/07/23</div>
+                            </div>
+                            <h3 class="case-card-title">コンセプト・コミュニケーション設計から構築し、新規事業立ち上げを支援</h3>
+                        </div>
+                    </div>
+                    <div class="case-card fade-in">
+                        <div class="case-card-image">
+                            <div class="case-image-placeholder">
+                                <p>事例画像</p>
+                            </div>
+                        </div>
+                        <div class="case-card-content">
+                            <div class="case-card-meta">
+                                <div class="case-card-category">新規事業支援</div>
+                                <div class="case-card-date">2025/07/23</div>
+                            </div>
+                            <h3 class="case-card-title">コンセプト・コミュニケーション設計から構築し、新規事業立ち上げを支援</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news">
+            <div class="container">
+                <div class="news-content">
+                    <div class="news-header fade-in">
+                        <div class="news-tag">NEWS</div>
+                    </div>
+                    <div class="news-list fade-in">
+                        <div class="news-item">
+                            <div class="news-item-meta">
+                                <div class="news-item-category">お知らせ</div>
+                                <div class="news-item-date">2025/07/23</div>
+                            </div>
+                            <h3 class="news-item-title">オフィス移転のお知らせ</h3>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-item-meta">
+                                <div class="news-item-category">お知らせ</div>
+                                <div class="news-item-date">2025/07/23</div>
+                            </div>
+                            <h3 class="news-item-title">オフィス移転のお知らせ</h3>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-item-meta">
+                                <div class="news-item-category">お知らせ</div>
+                                <div class="news-item-date">2025/07/23</div>
+                            </div>
+                            <h3 class="news-item-title">オフィス移転のお知らせ</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-footer">
+                    <div class="news-button-wrapper">
+                        <button class="news-arrow-button" aria-label="一覧を見る"></button>
+                        <span class="news-button-text">一覧をみる</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Section -->
+        <section class="career">
+            <div class="container">
+                <div class="career-header fade-in">
+                    <div class="career-tag">CAREER</div>
+                    <h2 class="career-title">私たちと一緒に働くメンバーを探しています。</h2>
+                    <p class="career-description">
+                        私たちはミッション・価値観への共感を何よりも大切に考え、一緒に働くメンバーを探しています。<br>
+                        ご興味をお持ちの方は、こちらから情報をご覧いただけます。
+                    </p>
+                    <div class="career-button-wrapper">
+                        <button class="career-arrow-button" aria-label="採用情報について"></button>
+                        <span class="career-button-text">採用情報について</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <div class="container">
+                <div class="faq-content">
+                    <div class="faq-header fade-in">
+                        <div class="faq-tag">FAQ</div>
+                    </div>
+                    <div class="faq-list fade-in">
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>どのくらい早く始められますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>サインアップ後、すぐに始めることができます。オンボーディングプロセスは5分未満で完了し、チームを招待してすぐにコラボレーションを開始できます。機能を最大限活用するためのガイド付きチュートリアルも提供しています。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>データは安全ですか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>もちろんです。エンタープライズグレードの暗号化、定期的なセキュリティ監査を実施し、SOC 2 Type II基準に準拠しています。データは99.9%の稼働率保証がある安全なデータセンターに保存され、第三者と情報を共有することは一切ありません。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>いつでもプランを変更できますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>はい、いつでもプランをアップグレードまたはダウングレードできます。変更は即座に有効になり、料金は日割りで計算されます。長期契約や解約料金はありません。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>カスタマーサポートは提供していますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>全プランでのメールサポート、プロフェッショナルプランでの優先サポート、エンタープライズプランでの24時間365日専用サポートなど、包括的なサポートを提供しています。充実したナレッジベースとビデオチュートリアルもご利用いただけます。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item fade-in">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>どのような連携機能をサポートしていますか？</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content">
+                                <p>Slack、Microsoft Teams、Google Workspace、Salesforce、Jiraなど、100以上の人気ビジネスツールと連携できます。カスタム連携のための堅牢なAPIも提供しています。</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-section fade-in">
+                        <h2 class="contact-title">お問い合わせ</h2>
+                        <p class="contact-description">
+                            サービスに関するご質問や、取材・パートナーシップのご相談などはこちらからお気軽にご連絡ください。
+                        </p>
+                        <div class="contact-button-wrapper">
+                            <button class="contact-arrow-button" aria-label="お問い合わせはこちら"></button>
+                            <span class="contact-button-text">お問い合わせはこちら</span>
+                        </div>
+                    </div>
+                    <div class="contact-divider"></div>
+                    <div class="contact-section fade-in">
+                        <h2 class="contact-title">採用について</h2>
+                        <p class="contact-description">
+                            チームのビジョンに共感し、共に前進できる仲間を探しています。一緒に働いてみませんか？
+                        </p>
+                        <div class="contact-button-wrapper">
+                            <button class="contact-arrow-button" aria-label="採用情報はこちら"></button>
+                            <span class="contact-button-text">採用情報はこちら</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3 class="footer-company-name">ModernBiz</h3>
+                    <p class="footer-address">
+                        〒100-0001 東京都千代田区千代田1-1-1<br>
+                        ModernBizビル 10F
+                    </p>
+                </div>
+                <nav class="footer-nav">
+                    <a href="#">企業情報</a>
+                    <a href="#">事業内容</a>
+                    <a href="#">事例紹介</a>
+                    <a href="#">お知らせ</a>
+                    <a href="#">採用情報</a>
+                    <a href="#">お問い合わせ</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ModernBiz Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Testimonial slider code removed since testimonials section was deleted
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentNode;
+                const answer = faqItem.querySelector('.faq-answer');
+                const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(otherButton => {
+                    if (otherButton !== button) {
+                        otherButton.setAttribute('aria-expanded', 'false');
+                        otherButton.parentNode.querySelector('.faq-answer').classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                button.setAttribute('aria-expanded', !isOpen);
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Mobile menu toggle (basic implementation)
+        document.getElementById('hamburger').addEventListener('click', () => {
+            // This would typically show/hide a mobile menu
+            // For this implementation, we'll just scroll to top as a placeholder
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
